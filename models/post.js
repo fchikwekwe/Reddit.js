@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/reddit', { useNewUrlParser: true });
+const Schema = mongoose.Schema;
 
-const Post = mongoose.model('Post', {
-    title: String,
-    content: String
+const PostSchema = new Schema ({
+    title: { type: String, required: true },
+    url: { type: String, required: true },
+    summary: { type: String, required: true }
 });
 
-module.exports = Post;
+module.exports = mongoose.model('Post', PostSchema);
