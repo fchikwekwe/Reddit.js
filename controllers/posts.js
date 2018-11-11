@@ -4,7 +4,13 @@ module.exports = function (app) {
 
     // Root
     app.get('/', (req, res) => {
-        res.send('Hello, world!')
+        Post.find({})
+        .then(posts => {
+            res.render("posts-index", { posts });
+        })
+        .catch(err => {
+            console.log(err.message);
+        });
     })
     // NEW
     app.get('/posts/new', (req, res) => {
@@ -13,7 +19,7 @@ module.exports = function (app) {
 
     // CREATE
     app.post('/posts', (req, res) => {
-        // console.log(req.body);
+        console.log(req.body);
         // Post.create(req.body).then((post) => {
         //     console.log(post);
         //     res.redirect('/')
