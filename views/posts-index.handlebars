@@ -1,14 +1,18 @@
 <h1>Reddit.js</h1>
 
-<p>Welcome to Reddit  ^__^</p>
+<p>Welcome to Reddit! ^__^</p>
 
 <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
         <ul>
             {{#each posts}}
             <li class="list-group-item">
-                <div class="lead">{{this.title}}</div>
-                <a href="{this.url}" target="_blank">{{this.url}}</a>
+                <div class="">
+                    <a href="/posts/{{this._id}}" class="lead">{{this.title}}</a>
+                </div>
+                <div class="">
+                    <a href="{this.url}" target="_blank">{{this.url}}</a>
+                </div>
             </li>
             {{/each}}
         </ul>

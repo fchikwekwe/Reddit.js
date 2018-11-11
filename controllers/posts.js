@@ -19,13 +19,7 @@ module.exports = function (app) {
 
     // CREATE
     app.post('/posts', (req, res) => {
-        console.log(req.body);
-        // Post.create(req.body).then((post) => {
-        //     console.log(post);
-        //     res.redirect('/')
-        // }).catch((err) => {
-        //     console.log(err.message);
-        // })
+        // console.log(req.body);
         // Instantiate instance of post model
         const post = new Post(req.body);
         // Save instance of post model to DB
@@ -34,4 +28,15 @@ module.exports = function (app) {
             return res.redirect(`/`);
         })
     })
+    // SHOW
+    app.get("/posts/:id", function(req, res) {
+        // Look up the post
+        Post.findById(req.params.id)
+        .then(post => {
+            res.render("posts-show", { post });
+        })
+        .catch(err => {
+            console.log(err.message);
+        });
+    });
 }
