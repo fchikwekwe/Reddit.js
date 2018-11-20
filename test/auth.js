@@ -18,4 +18,4 @@ describe('User', function() {
             done();
         });
     });
-});
+}); 
