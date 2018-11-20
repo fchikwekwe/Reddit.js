@@ -4,9 +4,19 @@
             <a href="/"class="navbar-brand">
                 Reddit.js
             </a>
+            {{#if currentUser}}
             <a href="/posts/new" class="btn btn-danger navbar-btn">
                 New Post
             </a>
+            {{/if}}
         </div>
+        <ul class="nav navbar-nav navbar-right">
+            {{#if currentUser}}
+            <li><a href="/logout">Logout</a></li>
+            {{else}}
+            <li><a href="/login">Login</a></li>
+            <li><a href="/sign-up">Sign Up</a></li>
+            {{/if}}
+        </ul>
     </div>
 </nav>

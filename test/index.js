@@ -10,7 +10,7 @@ describe('site', () => {
     // Describe what you are testing
     it('Should have home page', done => {
         chai
-            .request("localhost:3000")
+            .request('localhost:3000')
             .get('/')
             .end((err, res) => {
                 if (err) {

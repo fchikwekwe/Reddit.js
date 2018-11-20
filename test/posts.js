@@ -4,16 +4,16 @@ const should = chai.should();
 const server = require('../app');
 const Post = require("../models/post");
 
-describe("Posts", () => {
-    it("should create with valid attributes at POST /posts", done => {
-        var post = { title: "post title", url: "https://www.google.com", summary: "post summary" };
+describe('Posts', () => {
+    it('should create with valid attributes at POST /posts', done => {
+        var post = { title: 'post title', url: 'https://www.google.com', summary: 'post summary' };
         console.log(post);
         Post.findOneAndRemove(post, function() {
             Post.find(function(err, posts) {
                 var postCount = posts.count;
                 chai
-                    .request("localhost:3000")
-                    .post("/posts/new")
+                    .request('localhost:3000')
+                    .post('/posts/new')
                     .send(post)
                     .then(res => {
                         Post.find(function(err, posts) {
