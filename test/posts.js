@@ -1,8 +1,12 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const should = chai.should();
+
 const server = require('../app');
 const Post = require("../models/post");
+// const database = require ("../source/database/database.js")
+
+const should = chai.should()
+chai.use(chaiHttp);
 
 describe('Posts', () => {
     it('should create with valid attributes at POST /posts', done => {

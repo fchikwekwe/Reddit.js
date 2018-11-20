@@ -23,8 +23,17 @@ module.exports = function (app) {
         // Only allow logged in users to create posts
         if (req.user) {
             const post = new Post(req.body);
-            post.save((err, post) => {
-                return res.redirect(`/`);
+            post.author = req.user._id;
+
+            post.save.then(post => {
+                return User.findById(req.user._id);
+            }).then(user => {
+                user.posts.unshift(post);
+                user.save();
+                // Redirect to the new post
+                res.redirect('/posts/' + post._id);
+            }).catch(err => {
+                console.log(err.message);
             });
         } else {
             return res.status(401);
