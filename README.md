@@ -18,4 +18,4 @@ This app can be run from the command line using the command "nodemon". It is hos
 
 ## Testing
 
-Automated testing is integrated using Mocha and Chai. You can run tests using the command "mocha".
+Automated testing is integrated using Mocha and Chai. You can run tests using the command "mocha". 
