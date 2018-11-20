@@ -1,4 +1,4 @@
-const jwt = require('jasonwebtoken');
+const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
 module.exports = function(app) => {
@@ -57,4 +57,3 @@ module.exports = function(app) => {
             });
     });
 }
- 
