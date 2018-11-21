@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
 const methodOverride = require('method-override');
 const expressValidator = require('express-validator');
@@ -23,10 +23,11 @@ const checkAuth = (req, res, next) => {
 
 const app = express();
 
-const Post = require('./models/post');
-
 const mongoose = require('mongoose');
+
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/reddit', { useNewUrlParser: true });
+
+const Post = require('./models/post');
 
 app.set('port', process.env.PORT || 3000);
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -45,6 +46,6 @@ require('./controllers/comments.js')(app);
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('App listening on port 3000!')
-})
+});
 
 module.exports = app;

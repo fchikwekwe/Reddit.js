@@ -1,8 +1,9 @@
+const server = require('../app.js');
+const Post = require('../models/post.js');
+
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const should = chai.should();
-const server = require('../app.js');
-const Post = require('../models/post.js');
 
 chai.use(chaiHttp);
 
