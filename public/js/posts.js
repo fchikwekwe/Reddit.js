@@ -15,5 +15,19 @@ $(document).ready(function() {
         });
     });
 
-    $('.vote-down')
-})
+    $('.vote-down').submit(function(e) {
+        e.preventDefault();
+
+        const postId = $(this).data('id');
+        $.ajax({
+            type: 'PUT',
+            url: 'posts/' + postId + 'vote-down',
+            success: function(data) {
+                console.log('voted-down!');
+            },
+            error: function(err) {
+                console.log(err.message);
+            }
+        });
+    });
+});
