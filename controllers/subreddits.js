@@ -6,7 +6,8 @@ module.exports = function(app) {
         Post.find({ subreddit: req.params.subreddit })
             .then(posts => {
                 res.render ('posts-index', { posts });
-            }).catch(err => {
+            })
+            .catch(err => {
                 console.log(err);
             });
     });

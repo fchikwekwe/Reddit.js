@@ -1,8 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const methodOverride = require('method-override');
-const expressValidator = require('express-validator');
 const bodyParser = require('body-parser');
+const expressValidator = require('express-validator');
 
 const exphbs = require('express-handlebars');
 

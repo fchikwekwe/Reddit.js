@@ -6,9 +6,11 @@ module.exports = function (app) {
     app.get('/', (req, res) => {
         const currentUser = req.user;
 
-        Post.find({}).then(posts => {
+        Post.find({})
+            .then(posts => {
             res.render('posts-index', { posts });
-        }).catch(err => {
+        })
+        .catch(err => {
             console.log(err.message);
         });
     })
@@ -24,15 +26,18 @@ module.exports = function (app) {
         if (req.user) {
             const post = new Post(req.body);
             post.author = req.user._id;
-
-            post.save.then(post => {
-                return User.findById(req.user._id);
-            }).then(user => {
+            post
+                .save
+                .then(post => {
+                    return User.findById(req.user._id);
+            })
+            .then(user => {
                 user.posts.unshift(post);
                 user.save();
                 // Redirect to the new post
                 res.redirect('/posts/' + post._id);
-            }).catch(err => {
+            })
+            .catch(err => {
                 console.log(err.message);
             });
         } else {
@@ -48,7 +53,8 @@ module.exports = function (app) {
         .populate('comments')
         .then((post) => {
             res.render('posts-show', { post });
-        }).catch(err => {
+        })
+        .catch(err => {
             console.log(err.message);
         });
     });
