@@ -9,7 +9,9 @@
     <div class="text-right">
         <button type="submit">Save</button>
     </div>
-    {{#each post.comments}}
-        <p>{{this.content}}</p>
-    {{/each}}
+    <div class="row">
+        {{#each post.comments}}
+            {{> partials/comment}}
+        {{/each}}
+    </div>
 </form>

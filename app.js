@@ -22,14 +22,13 @@ const checkAuth = (req, res, next) => {
 };
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 const mongoose = require('mongoose');
-
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/reddit', { useNewUrlParser: true });
 
 const Post = require('./models/post');
 
-app.set('port', process.env.PORT || 3000);
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 app.use(bodyParser.json());
@@ -44,8 +43,8 @@ require('./data/reddit-db');
 require('./controllers/posts.js')(app);
 require('./controllers/comments.js')(app);
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log('App listening on port 3000!')
+app.listen(PORT, () => {
+    console.log('App listening on port', PORT)
 });
 
 module.exports = app;
