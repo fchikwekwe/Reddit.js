@@ -2,7 +2,7 @@ const Post = require('../models/post');
 const Comment = require('../models/comment');
 const User = require('../models/user');
 
-module.exports = function(app) {
+module.exports = (app) => {
     // NEW REPLY
     app.get('/posts/:postId/comments/:commentId/replies/new', (req, res) => {
         let post;

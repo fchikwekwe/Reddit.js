@@ -1,6 +1,6 @@
 const Post = require('../models/post');
 
-module.exports = function (app) {
+module.exports = (app) => {
 
     // Root
     app.get('/', (req, res) => {

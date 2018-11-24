@@ -1,9 +1,9 @@
 const Comment = require('../models/comment');
 const Post = require('../models/post');
 
-module.exports = function comments(app) {
+module.exports = (app) => {
 
-    // app.post('/posts/:postId/comments', function(req, res) {
+    app.post('/posts/:postId/comments', function(req, res) {
     //     Post.findById(req.params.postId).exec(function(err, post) {
     //         post.comments.unshift(req.body);
     //         post.save();
@@ -33,5 +33,5 @@ module.exports = function comments(app) {
         .catch((err) => {
             console.log(err);
         });
-    })
+    });
 }

@@ -22,7 +22,9 @@ const UserSchema = new Schema({
     }]
 });
 
+// Must use function here! ES6 => functions do not bind this!
 UserSchema.pre('save', function(next) {
+    // Set createdAt and updatedAt
     const now = new Date();
     this.updatedAt = now;
     if (!this.createdAt) {

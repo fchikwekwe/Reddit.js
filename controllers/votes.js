@@ -1,6 +1,6 @@
 const Post = require('../models/post');
 
-module.exports = function(app) {
+module.exports = (app) => {
     // UP VOTES
     app.put('/posts/:id/vote-up', function(req, res) {
         Post.findById(req.params.id)
