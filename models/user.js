@@ -19,7 +19,12 @@ const UserSchema = new Schema({
     posts: [{
         type: Schema.Types.ObjectId,
         ref: "Post"
-    }]
+    }],
+    author: {
+        type: Schema.Tyes.ObjectId,
+        ref: 'User',
+        required: true
+    }
 });
 
 // Must use function here! ES6 => functions do not bind this!

@@ -26,8 +26,7 @@ module.exports = (app) => {
         if (req.user) {
             const post = new Post(req.body);
             post.author = req.user._id;
-            post
-                .save
+            post.save
                 .then(post => {
                     return User.findById(req.user._id);
             })

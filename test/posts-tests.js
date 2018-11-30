@@ -40,7 +40,7 @@ describe('Posts', () => {
                     .send(post)
                     .then((res) => {
                         Post.find(() => {
-                            postCount.should.be.equal(posts.length + 1);
+                            postCount.should.be.equal(posts.length - 1);
                             res.should.have.status(200);
                             return done();
                         });
