@@ -42,6 +42,7 @@ app.use(cookieParser());
 app.use(checkAuth);
 
 require('./data/reddit-db');
+require('./controllers/auth.js')(app);
 require('./controllers/posts.js')(app);
 require('./controllers/comments.js')(app);
 

@@ -4,12 +4,6 @@ const Post = require('../models/post');
 module.exports = (app) => {
 
     app.post('/posts/:postId/comments', function(req, res) {
-    //     Post.findById(req.params.postId).exec(function(err, post) {
-    //         post.comments.unshift(req.body);
-    //         post.save();
-    //
-    //         return res.redirect(`/posts/` + post._id)
-    //     })
 
     // CREATE COMMENT
     //Instantiate instance of comment model

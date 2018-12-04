@@ -1,1 +1,17 @@
-<p>login form</p>
+<form method="POST" action="/login">
+    <fieldset>
+        <legend>Log in</legend>
+         <a href="/sign-up">If you have not yet signed up, click here!</a><br><br>
+        <!-- Username -->
+        <label for="username">Username</label><br>
+        <div class="input-group">
+            <input class="form-control" id="login-username" type="text" name="username" placeholder="username"/>
+            <input class="form-control" id="login-username" type="text" name="password" placeholder="password"/>
+            <span class="input-group-btn">
+                <a href="/login">
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </a>
+            </span>
+        </div>
+    </fieldset>
+</form>
