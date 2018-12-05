@@ -4,7 +4,8 @@ const User = require('../models/user');
 module.exports = (app) => {
     // SIGN-UP FORM
     app.get('/sign-up', (req, res) => {
-        res.render('sign-up-form');
+        const currentUser = req.user;
+        res.render('sign-up-form', { currentUser });
     });
 
     // SIGN-UP POST
@@ -36,8 +37,9 @@ module.exports = (app) => {
     });
     // LOGIN
     app.get('/login', (req, res) => {
+        const currentUser = req.user;
         console.log('login form');
-        res.render('login-form');
+        res.render('login-form', { currentUser });
     })
 
     // LOGIN POST

@@ -5,10 +5,9 @@ module.exports = (app) => {
     // Root
     app.get('/', (req, res) => {
         const currentUser = req.user;
-
         Post.find({})
             .then(posts => {
-            res.render('posts-index', { posts });
+            res.render('posts-index', { posts, currentUser });
         })
         .catch(err => {
             console.log(err.message);
@@ -17,7 +16,8 @@ module.exports = (app) => {
 
     // NEW
     app.get('/posts/new', (req, res) => {
-        res.render('posts-new', {});
+        const currentUser = req.user;
+        res.render('posts-new', { currentUser });
     })
 
     // CREATE
@@ -47,11 +47,12 @@ module.exports = (app) => {
 
     // SHOW
     app.get('/posts/:id', function(req, res) {
+        const currentUser = req.user;
         // Look up the post
         Post.findById(req.params.id)
         .populate('comments')
         .then((post) => {
-            res.render('posts-show', { post });
+            res.render('posts-show', { post, currentUser });
         })
         .catch(err => {
             console.log(err.message);

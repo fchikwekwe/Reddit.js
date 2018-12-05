@@ -5,6 +5,7 @@ const User = require('../models/user');
 module.exports = (app) => {
     // NEW REPLY
     app.get('/posts/:postId/comments/:commentId/replies/new', (req, res) => {
+        const currentUser = req.user;
         let post;
         Post.findById(req.params.postId)
             .then(p => {
@@ -12,7 +13,11 @@ module.exports = (app) => {
                 return Comment.findById(req.params.commentId);
             })
             .then(comment => {
-                res.render('replies-new', { post, comment });
+                res.render('replies-new', {
+                    post,
+                    comment,
+                    currentUser
+                });
             })
             .catch(err => {
                 console.log(err.message);

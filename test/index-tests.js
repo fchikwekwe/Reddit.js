@@ -23,4 +23,4 @@ describe('site', () => {
     });
 });
 
-module.post = server;
+module.exports = server;
