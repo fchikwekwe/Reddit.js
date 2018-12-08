@@ -1,5 +1,5 @@
 <div class="col-xs-12 comment-indent">
-    <p>{{this.content}}</p>
+    <a href="/posts/{{this.id}}/comments/{{comments._id}}/replies/new">{{this.content}}</a>
     {{#each this.comments}}
         {{> comment}}
     {{/each}}

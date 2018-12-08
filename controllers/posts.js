@@ -55,10 +55,23 @@ module.exports = (app) => {
         const currentUser = req.user;
         // Look up the post
         Post.findById(req.params.id)
-        .populate('comments')
-        .then((post) => {
-            res.render('posts-show', { post, currentUser });
-        })
+            // get post author
+            .populate('author')
+            // get comments author
+            .populate({
+                path: 'comments',
+                populate: { path: 'author' }
+            })
+            .then((post) => {
+                Comment.find()
+                .then((comments) => {
+                    res.render('posts-show', {
+                        post: post,
+                        comment: comments,
+                        currentUser
+                    });
+                })
+            })
         .catch(err => {
             console.log(err.message);
         });

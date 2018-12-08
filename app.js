@@ -13,7 +13,7 @@ const exphbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 
-
+/** Instantiate server */
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -54,6 +54,7 @@ require('./data/reddit-db');
 require('./controllers/auth.js')(app);
 require('./controllers/posts.js')(app);
 require('./controllers/comments.js')(app);
+require('./controllers/subreddits.js')(app);
 
 app.listen(PORT, () => {
     console.log('App listening on port', PORT)
