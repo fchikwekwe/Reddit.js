@@ -1,4 +1,6 @@
 const Post = require('../models/post');
+const User = require('../models/user');
+const Comment = require('../models/comment');
 
 module.exports = (app) => {
 
@@ -6,6 +8,7 @@ module.exports = (app) => {
     app.get('/', (req, res) => {
         const currentUser = req.user;
         Post.find({})
+            .populate('author')
             .then(posts => {
             res.render('posts-index', { posts, currentUser });
         })
@@ -25,8 +28,11 @@ module.exports = (app) => {
         // Only allow logged in users to create posts
         if (req.user) {
             const post = new Post(req.body);
+            console.log(post)
             post.author = req.user._id;
-            post.save
+            console.log("post.author.username" + post.author.username)
+            post
+                .save()
                 .then(post => {
                     return User.findById(req.user._id);
             })
@@ -42,7 +48,6 @@ module.exports = (app) => {
         } else {
             return res.status(401);
         }
-
     })
 
     // SHOW
