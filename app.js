@@ -49,12 +49,16 @@ const checkAuth = (req, res, next) => {
 };
 app.use(checkAuth);
 
-/** Require Controllers */
+/** Database setup */
 require('./data/reddit-db');
+
+/** Require Controllers */
 require('./controllers/auth.js')(app);
-require('./controllers/posts.js')(app);
 require('./controllers/comments.js')(app);
+require('./controllers/posts.js')(app);
+require('./controllers/replies.js')(app);
 require('./controllers/subreddits.js')(app);
+require('./controllers/votes.js')(app);
 
 app.listen(PORT, () => {
     console.log('App listening on port', PORT)

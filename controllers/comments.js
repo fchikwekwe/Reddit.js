@@ -18,33 +18,3 @@ module.exports = (app) => {
 
 
 }
-
-/**
-// OLD CREATE ROUTE
-//     app.post('/posts/:postId/comments', (req, res) => {
-//     // Check currentUser
-//     const currentUser = req.user;
-//     if (req.user) {
-//         // CREATE COMMENT
-//         const comment = new Comment(req.body);
-//         console.log("req.body: " + req.body);
-//         comment.author = req.user._id;
-//         // Save instance of comment model to DB
-//         comment
-//             .save()
-//             .then((comment) => {
-//                 return Post.findById(req.user._id);
-//             })
-//             .then((post) => {
-//                 post.comments.unshift(comment);
-//                 post.save();
-//                 res.redirect('/posts/' + post._id);
-//             })
-//             .catch((err) => {
-//                 console.log(err);
-//             });
-//         } else {
-//             return res.status(401);
-//         }
-//     });
- */

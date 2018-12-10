@@ -1,6 +1,7 @@
 const Post = require('../models/post');
 
 module.exports = (app) => {
+    
     // SUBREDDIT
     app.get('/f/:subreddit', function(req, res) {
         // console.log("subreddit: " + req.params.subreddit)
