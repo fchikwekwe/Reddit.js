@@ -29,9 +29,9 @@ module.exports = (app) => {
         Post.findById(req.params.postId)
             .then(post => {
                 // Find the child comment
-                const comment = post.comments.is(req.params.commentId);
+                const comment = post.comments.id(req.params.commentId);
                 // Add reply
-                comment.comment.unshift(req.body);
+                comment.replies.unshift(req.body);
                 // Save the change to parent document
                 return post.save();
             })

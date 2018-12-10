@@ -8,19 +8,26 @@ module.exports = (app) => {
     app.get('/', (req, res) => {
         const currentUser = req.user;
         Post.find({})
-            .populate('author')
             .then(posts => {
-            res.render('posts-index', { posts, currentUser });
+            res.render('posts-index', {
+                posts: posts,
+                currentUser
+            });
         })
         .catch(err => {
-            console.log(err.message);
+            console.log("Unable to render root", err.message);
         });
     })
 
     // NEW
     app.get('/posts/new', (req, res) => {
         const currentUser = req.user;
-        res.render('posts-new', { currentUser });
+        if (req.user) {
+            res.render('posts-new', { currentUser });
+        } else {
+            return res.status(401);
+        }
+
     })
 
     // CREATE
@@ -28,9 +35,9 @@ module.exports = (app) => {
         // Only allow logged in users to create posts
         if (req.user) {
             const post = new Post(req.body);
-            console.log(post)
+            // console.log(post)
             post.author = req.user._id;
-            console.log("post.author.username" + post.author.username)
+            // console.log("post.author.username" + post.author.username)
             post
                 .save()
                 .then(post => {
@@ -43,7 +50,7 @@ module.exports = (app) => {
                 res.redirect('/posts/' + post._id);
             })
             .catch(err => {
-                console.log(err.message);
+                console.log("[/posts] Unable to create post.", err.message);
             });
         } else {
             return res.status(401);
@@ -60,7 +67,9 @@ module.exports = (app) => {
             // get comments author
             .populate({
                 path: 'comments',
-                populate: { path: 'author' }
+                populate: {
+                    path: 'author'
+                }
             })
             .then((post) => {
                 Comment.find()
@@ -73,7 +82,7 @@ module.exports = (app) => {
                 })
             })
         .catch(err => {
-            console.log(err.message);
+            console.log("[/posts/:id] Unable to show this post", err.message);
         });
     });
 
