@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Comment = require('./comment');
+// Utility made by @dacioromero
+const Autopopulate = require('../utilities/autopopulate.js')
 
 const PostSchema = new Schema ({
     createdAt: {
@@ -34,7 +36,9 @@ const PostSchema = new Schema ({
         ref: "User",
         required: true
     }
-});
+}).pre('findOne', Autopopulate('comments'))
+.pre('find', Autopopulate('comments'));
+
 
 PostSchema.pre('save', (next) => {
     // SET createdAt and updatedAt
@@ -46,5 +50,4 @@ PostSchema.pre('save', (next) => {
     }
     next()
 })
-
 module.exports = mongoose.model('Post', PostSchema);

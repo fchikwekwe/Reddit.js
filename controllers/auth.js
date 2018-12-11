@@ -65,7 +65,7 @@ module.exports = (app) => {
                     }
                     // User authenticated; Create a token
                     const currentUser = req.user; // set req.user to currentUser
-                    console.log("current user:" + user)
+                    // console.log("current user:" + user)
                     const token = jwt.sign({
                         _id: user._id,
                         username: user.username

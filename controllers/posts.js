@@ -41,7 +41,7 @@ module.exports = (app) => {
             post
                 .save()
                 .then(post => {
-                    return User.findById(req.user._id);
+                    return User.findById(post.author);
             })
             .then(user => {
                 user.posts.unshift(post);

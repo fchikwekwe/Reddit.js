@@ -3,45 +3,62 @@ const Comment = require('../models/comment');
 const User = require('../models/user');
 
 module.exports = (app) => {
-    
-    // NEW REPLY
-    app.get('/posts/:postId/comments/:commentId/replies/new', (req, res) => {
-        const currentUser = req.user;
-        let post;
-        Post.findById(req.params.postId)
-            .then(p => {
-                post = p;
-                return Comment.findById(req.params.commentId);
-            })
-            .then(comment => {
-                res.render('replies-new', {
-                    post,
-                    comment,
-                    currentUser
-                });
-            })
-            .catch(err => {
-                console.log(err.message);
-            });
-    });
     // CREATE REPLY
     app.post('/posts/:postId/comments/:commentId/replies', (req, res) => {
-        // Lookup the parent post
-        Post.findById(req.params.postId)
-            .then(post => {
-                // Find the child comment
-                const comment = post.comments.id(req.params.commentId);
-                // Add reply
-                comment.replies.unshift(req.body);
-                // Save the change to parent document
-                return post.save();
+        const comment = new Comment(req.body);
+        comment.author = req.user._id
+
+        comment
+            .save()
+            .then(() => {
+                // Find and return parent comment
+                return Comment.findById(req.params.commentId)
             })
-            .then(post => {
-                //Redirect to the parent POST#SHOW route
-                res.redirect('/posts/' + post._id);
+            .then(parent => {
+                console.log('UNSHIFTING PARENT!!')
+                // Add reply
+                parent.comments.unshift(comment);
+                // Save the change to parent document
+                parent.save();
+            })
+            .then(() => {
+                // Get the current user
+                return User.findById(req.user._id);
+            })
+            .then((user) => {
+                console.log('UNSHIFTING USER COMMENTS!')
+                user.comments.unshift(comment);
+                user.save()
+            })
+            .then(() => {
+                res.redirect('/posts/' + req.params.postId);
             })
             .catch(err => {
                 console.log(err.message);
             });
     });
 };
+
+/*
+*
+// NEW REPLY
+app.get('/posts/:postId/comments/:commentId/replies/new', (req, res) => {
+    const currentUser = req.user;
+    Post.findById(req.params.postId)
+        .then(p => {
+            post = p;
+            return Comment.findById(req.params.commentId);
+        })
+        .then(comment => {
+            res.render('replies-new', {
+                post,
+                comment,
+                currentUser
+            });
+        })
+        .catch(err => {
+            console.log(err.message);
+        });
+});
+
+*/

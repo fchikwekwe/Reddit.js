@@ -1,6 +1,17 @@
-<div class="col-xs-12 comment-indent">
-    <a href="/posts/{{this.id}}/comments/{{comments._id}}/replies/new">{{this.content}}</a>
-    {{#each this.comments}}
-        {{> comment}}
-    {{/each}}
+<div class="row justify-content-left mt-3 mb-3 ml-3">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4>{{this.content}}</h4>
+
+                {{> replies-new}}
+
+                {{#each this.comments}}
+                    {{> comment}}
+                {{/each}}
+
+            </div>
+        </div>
+    </div>
 </div>

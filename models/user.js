@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const Schema = mongoose.Schema;
+// Utility made by @dacioromero
+const Autopopulate = require('../utilities/autopopulate.js')
 
 const UserSchema = new Schema({
     createdAt: {
@@ -21,8 +23,12 @@ const UserSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Post"
     }],
-
-});
+    comments: [ {
+        type: Schema.Types.ObjectId,
+        ref: 'Comment'
+    }]
+}).pre('findOne', Autopopulate('comments'))
+.pre('find', Autopopulate('comments'));
 
 // Must use function here! ES6 => functions do not bind this!
 UserSchema.pre('save', function(next) {
