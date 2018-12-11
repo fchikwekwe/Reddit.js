@@ -17,9 +17,6 @@ const jwt = require('jsonwebtoken');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-/** Database Connection */
-const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/reddit', { useNewUrlParser: true });
 
 /** Use Middleware */
 app.engine('handlebars', exphbs({

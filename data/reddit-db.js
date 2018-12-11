@@ -1,10 +1,13 @@
+/** Require Mongoose */
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
+/** Require Assert for Connection */
 assert = require('assert');
 
-const url = 'mongodb://localhost/reddit-db';
-
+/** Database Connection */
+const url = 'mongodb://heroku_6jqp49f2:4ql0lgjrd2ijt3ri8mnj4dh4gd@ds131814.mlab.com:31814/heroku_6jqp49f2'
+const mongoose = require('mongoose');
 mongoose.connect(
     url,
     { useNewUrlParser: true },
