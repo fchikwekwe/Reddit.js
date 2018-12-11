@@ -2,14 +2,16 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-body">
+                <div class="d-flex">
+                    <!-- Post content -->
+                    <h4 class="card-text">{{this.content}}</h4>
+                    <!-- input for new reply -->
+                    {{> replies-new}}
 
-                <h4>{{this.content}}</h4>
-
-                {{> replies-new}}
-
-                {{#each this.comments}}
-                    {{> comment}}
-                {{/each}}
+                    {{#each this.comments}}
+                        {{> comment}}
+                    {{/each}}
+                </div>
 
             </div>
         </div>

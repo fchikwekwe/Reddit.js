@@ -7,9 +7,8 @@ assert = require('assert');
 
 /** Database Connection */
 const url = 'mongodb://heroku_6jqp49f2:4ql0lgjrd2ijt3ri8mnj4dh4gd@ds131814.mlab.com:31814/heroku_6jqp49f2'
-const mongoose = require('mongoose');
 mongoose.connect(
-    url,
+    url || 'mongodb://localhost:27017/reddit',
     { useNewUrlParser: true },
     { useMongoClient: true },
     function(err, db) {

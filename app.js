@@ -17,7 +17,6 @@ const jwt = require('jsonwebtoken');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-
 /** Use Middleware */
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
