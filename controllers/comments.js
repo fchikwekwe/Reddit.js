@@ -15,6 +15,7 @@ module.exports = (app) => {
             .then(comment => {
                 return Post.findById(req.params.postId)
             })
+            .populate('author')
             .then(post => {
                 post.comments.unshift(comment)
                 post.save()
