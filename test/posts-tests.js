@@ -1,16 +1,23 @@
+/** Require testing frameworks */
 const chai = require('chai');
 const chaiHttp = require('chai-http');
+const should = chai.should()
+chai.use(chaiHttp);
+
+/** Require model and main server */
 const server = require('../app');
 const Post = require('../models/post');
 
+/** Using an agent to preserve JWT */
+const agent = chai.request.agent(server);
+
+/** Dummy post to use in our tests */
 const post = {
     'title': 'post title',
     'url': 'https://www.google.com',
     'summary': 'post summary'
 };
 
-const should = chai.should()
-chai.use(chaiHttp);
 
 describe('Posts', () => {
 
@@ -30,6 +37,8 @@ describe('Posts', () => {
         })
     });
     it('should create with valid attributes at POST /posts', (done) => {
+        
+
         // console.log(post);
         Post.findOneAndRemove(post, () => {
             Post.find((err, posts) => {

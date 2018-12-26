@@ -14,7 +14,7 @@ New concepts in this project included authentication patterns and making resourc
 
 ## Running
 
-This app can be run from the command line using the command "nodemon". It is hosted on port https://localhost:3000.
+This app can be run from the command line using the command "npm start". It is hosted on port https://localhost:3000.
 
 ## Testing
 
